@@ -25,7 +25,7 @@ public class TwoSum1 {
             return res;
         }
 
-        Map<Integer, Integer> remainSet = new HashMap<>();//<remain, index>
+        Map<Integer, Integer> remainSet = new HashMap<>();//<remain, index> 使用HashMap时注意标出Key与Value的意义
 
         for (int i = 0; i < nums.length; i++) {
             if (remainSet.containsKey(nums[i])) {
