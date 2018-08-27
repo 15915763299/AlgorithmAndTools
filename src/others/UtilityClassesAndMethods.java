@@ -11,6 +11,7 @@ public class UtilityClassesAndMethods {
         Integer[] integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         Object[] objects = {new Object(), new Object(), new Object()};
 
+        //*****************************  Arrays  *****************************
         //自动填充相同元素
         Arrays.fill(integers, 3, 7, 10);
         //数组直接转字符串
@@ -29,16 +30,23 @@ public class UtilityClassesAndMethods {
         //排序
         //Arrays.sort();
 
+
+        //*****************************  Collections  *****************************
         //两个Collection是否无交集
         //System.out.println(Collections.disjoint(integerList, integerList));
         //某个Object在Collection中出现的次数
         //System.out.println(Collections.frequency(integerList, 10));
         //...
 
+
+        //*****************************  String  *****************************
         //拼接
         String[] strings = {"1", "2", "3"};
         System.out.println(String.join("-", strings));
+        //...
 
+
+        //*****************************  Character  *****************************
         //Character.isDigit();
         //Character.isUpperCase();
         //Character.getNumericValue();
