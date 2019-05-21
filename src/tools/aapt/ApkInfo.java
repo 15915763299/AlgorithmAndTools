@@ -2,7 +2,7 @@ package tools.aapt;
 
 public class ApkInfo {
 
-    private String packageName, versionCode, versionName;
+    private String packageName, versionCode, versionName;//packageName --> applicationId，也是多渠道配置的Id
     private String sdkVersion, targetSdkVersion;
     private String applicationLabel;//applicationName
 

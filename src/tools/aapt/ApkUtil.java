@@ -12,10 +12,12 @@ public class ApkUtil {
     private static final String SPLIT_REGEX = "(: )|(=')|(' )|'";
 
     public static void main(String[] args) {
-        String apkPath = "F:\\AndroidStudioProjects\\ProjectsEnZhi\\MedicalPay\\MedicalPay\\app\\release\\medicalpay-test-v0.1.5.12.apk";
-        String aaptPath = "E:\\Android\\sdk\\build-tools\\28.0.3\\aapt.exe";
+        String apkPath1 = "F:\\AndroidStudioProjects\\ProjectsEnZhi\\AdminPay\\adm-mobile-v2\\app\\guiyang\\release\\AdminPay-guiyang-0.1.3.2-release.apk";
+        String apkPath2 = "F:\\AndroidStudioProjects\\ProjectsEnZhi\\AdminPay\\adm-mobile-v2\\app\\yunnan\\release\\AdminPay-yunnan-1.3.0-release.apk";
 
-        parseApk(apkPath, aaptPath);
+        String aaptPath = "E:\\Android\\sdk\\build-tools\\28.0.3\\aapt.exe";
+        parseApk(apkPath1, aaptPath);
+        parseApk(apkPath2, aaptPath);
     }
 
 
@@ -34,7 +36,7 @@ public class ApkUtil {
             bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
             String temp;
             while ((temp = bufferedReader.readLine()) != null) {
-                //System.out.println(source);
+//                System.out.println(temp);
                 //package: name='com.enzhi.medicalpay' versionCode='11' versionName='0.1.5.12'
                 //sdkVersion:'21'
                 //targetSdkVersion:'28'
