@@ -16,7 +16,7 @@ public class ApkUtil {
         String apkPath2 = "F:\\AndroidStudioProjects\\ProjectsEnZhi\\AdminPay\\adm-mobile-v2\\app\\yunnan\\release\\AdminPay-yunnan-1.3.0-release.apk";
 
 //        String aaptPath = "E:\\Android\\sdk\\build-tools\\28.0.3\\aapt.exe";
-        String aaptPath = "src/main/resources/aapt";
+        String aaptPath = "src/main/resources/aapt/aapt";
         parseApk(apkPath1, aaptPath);
         parseApk(apkPath2, aaptPath);
     }
