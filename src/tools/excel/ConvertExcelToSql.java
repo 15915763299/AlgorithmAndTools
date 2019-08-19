@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * 将 Excle 转换为 SQL 语句
+ */
 public class ConvertExcelToSql {
 
     private static ExcelListener<Medicine> listener = new ExcelListener<>();

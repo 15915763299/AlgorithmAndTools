@@ -1,5 +1,8 @@
 package others;
 
+/**
+ * 对象赋值
+ */
 public class ObjectAssignment {
 
     private static class A {
