@@ -16,58 +16,47 @@ public class ConvertExcelToSql {
     private static ExcelListener<Medicine> listener = new ExcelListener<>();
 
     public static void main(String[] args) throws Exception {
-        File excelFile = new File(MyUrlDemo.class.getResource("init_2019-06-03.xlsx").getPath());
+        File excelFile = new File(MyUrlDemo.class.getResource("init_2019-07-31.xlsx").getPath());
 
         InputStream inputStream = new FileInputStream(excelFile);
         //InputStream in, Object customContent, AnalysisEventListener eventListener
 
         ExcelReader excelReader = new ExcelReader(inputStream, null, listener);
-        excelReader.read(new Sheet(1, 1, Medicine.class));
+        excelReader.read(new Sheet(1, 2, Medicine.class));
 
         //INSERT INTO T_MEDICINE VALUES (
         //31150120920','testPharmacy2','厄贝沙坦片(安博维)','31150120920','HPSMTLEHSP','6950641900143',
         //'片剂','盒','0.15g*7T','1','赛诺菲（杭州）制药有限公司',
         //'厄贝沙坦片(安博维)','01V9168089100085','01','1','30.5','2');
 
+        int count = 0;
+        String pharmacyId = "testPharmacy2";
         List<Medicine> medicines = listener.getRows();
         for (Medicine m : medicines) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO T_MEDICINE VALUES ('");
-            sb.append(generateId());
-            sb.append("','");
-            sb.append("testPharmacy2");
-            sb.append("','");
-            sb.append(m.getHospName());
-            sb.append("','");
-            sb.append(m.getHospCode());
-            sb.append("','");
-            sb.append(getPinYinHeadChar(m.getHospName()));
-            sb.append("','");
-            sb.append(m.getBarCode());
-            sb.append("','");
-            sb.append(m.getDrugForm());
-            sb.append("','");
-            sb.append(m.getUnit());
-            sb.append("','");
-            sb.append(m.getSpec());
-            sb.append("','");
-            sb.append(CLASSIFY_MAP.get(m.getClassify()));
-            sb.append("','");
-            sb.append(m.getPlaceOfProd());
-            sb.append("','");
-            sb.append(m.getMiName());
-            sb.append("','");
-            sb.append(m.getMiCode());
-            sb.append("','");
-            sb.append(BKE001_MAP.get(m.getMiCategory()));
-            sb.append("','");
-            sb.append(m.getPrice());
-            sb.append("','");
-            sb.append(MD_STATUS_SELLING);
-            sb.append("');");
-            System.out.println(sb.toString());
+            count++;
+            String sql = "INSERT INTO T_MEDICINE " +
+                    "(ID, PHARMACYID, HOSPNAME, HOSPCODE, PINYINCODE, BARCODE, DRUGFORM, UNIT, SPEC, CLASSIFY, " +
+                    "PLACEOFPROD, MINAME, MICODE, MICATEGORY, MIITEMLEVEL, PRICE, STATUS) VALUES ('" +
+                    generateId() + "','" +
+                    pharmacyId + "','" +
+                    m.getHospName() + "','" +
+                    m.getHospCode() + "','" +
+                    getPinYinHeadChar(m.getHospName()) + "','" +
+                    m.getBarCode() + "','" +
+                    m.getDrugForm() + "','" +
+                    m.getUnit() + "','" +
+                    m.getSpec() + "','" +
+                    /*(m.getClassify() == null ? "" : CLASSIFY_MAP.get(m.getClassify())) +*/ "1','" +
+                    m.getPlaceOfProd() + "','" +
+                    m.getMiName() + "','" +
+                    m.getMiCode() + "','" +
+                    (m.getMiCategory() == null ? "" : BKE001_MAP.get(m.getMiCategory())) + "','" +
+                    (m.getMiItemLevel() == null ? "" : AKA065_MAP.get(m.getMiItemLevel())) + "','" +
+                    m.getPrice() + "','" +
+                    MD_STATUS_SELLING + "');";
+            System.out.println(sql);
         }
-
+        System.out.println(count);
     }
 
     /**
@@ -106,6 +95,8 @@ public class ConvertExcelToSql {
     private static HashMap<String, String> CLASSIFY_MAP;
     //收费大类编码
     private static HashMap<String, String> BKE001_MAP;
+    //收费项目等级
+    private static HashMap<String, String> AKA065_MAP;
 
     static {
         CLASSIFY_MAP = new HashMap<>();
@@ -115,6 +106,9 @@ public class ConvertExcelToSql {
         BKE001_MAP = new HashMap<>();
         BKE001_MAP.put("西药", "01");
         BKE001_MAP.put("中药、中成药", "02");
+        BKE001_MAP.put("中药", "02");
+        BKE001_MAP.put("中成药", "02");
+
         BKE001_MAP.put("器官购置", "15");
         BKE001_MAP.put("抢救用药", "17");
         BKE001_MAP.put("材料费", "31");
@@ -139,6 +133,12 @@ public class ConvertExcelToSql {
         BKE001_MAP.put("中医特殊疗法", "87");
         BKE001_MAP.put("中医综合", "88");
         BKE001_MAP.put("新增试用项目", "89");
+
+        AKA065_MAP = new HashMap<>();
+        AKA065_MAP.put("甲类", "1");
+        AKA065_MAP.put("乙类", "2");
+        AKA065_MAP.put("丙类", "3");
+        AKA065_MAP.put("特检特治", "4");
     }
 
 }

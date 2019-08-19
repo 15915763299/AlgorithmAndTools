@@ -38,10 +38,10 @@ public class Medicine extends BaseRowModel {
     @ExcelProperty(value = "生产厂家", index = 8)//I
     private String placeOfProd;
 
-    @ExcelProperty(value = "医保药品名称(必填）", index = 9)//J
+    @ExcelProperty(value = "医保药品名称(必填）", index = 10)//J
     private String miName;
 
-    @ExcelProperty(value = "医保药品编码(必填)", index = 10)//K
+    @ExcelProperty(value = "医保药品编码(必填)", index = 9)//K
     private String miCode;
 
     @ExcelProperty(value = "医保收费大类(必填)", index = 11)//L
