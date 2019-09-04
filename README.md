@@ -1,7 +1,8 @@
 # algorithm
-自己刷的算法题，这里做一个记录，如果有优化建议，欢迎讨论！
+记录一些算法题和一些工具
 
 # 目录结构
 * others                包括一些Java基础，易错点
 * sort                  基础排序
-* linear structure      线性结构
+* structure/linear      线性结构
+* tools                 工具
