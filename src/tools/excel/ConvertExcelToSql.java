@@ -19,48 +19,38 @@ public class ConvertExcelToSql {
     private static ExcelListener<Medicine> listener = new ExcelListener<>();
 
     public static void main(String[] args) throws Exception {
-        File excelFile = new File(MyUrlDemo.class.getResource("init_2019-07-31.xlsx").getPath());
+        File excelFile = new File(MyUrlDemo.class.getResource("init_00009999_20190923.xlsx").getPath());
 
         InputStream inputStream = new FileInputStream(excelFile);
         //InputStream in, Object customContent, AnalysisEventListener eventListener
 
         ExcelReader excelReader = new ExcelReader(inputStream, null, listener);
-        excelReader.read(new Sheet(1, 2, Medicine.class));
+        excelReader.read(new Sheet(1, 1, Medicine.class));
 
-        //INSERT INTO T_MEDICINE VALUES (
-        //31150120920','testPharmacy2','厄贝沙坦片(安博维)','31150120920','HPSMTLEHSP','6950641900143',
-        //'片剂','盒','0.15g*7T','1','赛诺菲（杭州）制药有限公司',
-        //'厄贝沙坦片(安博维)','01V9168089100085','01','1','30.5','2');
+        // INSERT INTO R_Company_Medicine (COMPANYID, MEDICINEID, COMEDICINEID, COMEDICINENAME, MICODE, MINAME, PRICE, MINPRICE, BARCODE, STATUS)
+        // VALUES ('392bdc8c36874717bbc3b089c4820278',(select MEDICINEID from T_Medicine where MINAME='参一胶囊（限制条件详见人社部36种谈判药品目录）' and MICODE='02V999346300014'),
+        // '132229','参一胶囊','02V999346300014','参一胶囊（限制条件详见人社部36种谈判药品目录）','0.0','0','6927301600033','1');
 
         int count = 0;
-        String pharmacyId = "testPharmacy2";
         List<Medicine> medicines = listener.getRows();
         for (Medicine m : medicines) {
             count++;
-            String sql = "INSERT INTO T_MEDICINE " +
-                    "(ID, PHARMACYID, HOSPNAME, HOSPCODE, PINYINCODE, BARCODE, DRUGFORM, UNIT, SPEC, CLASSIFY, " +
-                    "PLACEOFPROD, MINAME, MICODE, MICATEGORY, MIITEMLEVEL, PRICE, STATUS) VALUES ('" +
-                    generateId() + "','" +
-                    pharmacyId + "','" +
-                    m.getHospName() + "','" +
-                    m.getHospCode() + "','" +
-                    getPinYinHeadChar(m.getHospName()) + "','" +
-                    m.getBarCode() + "','" +
-                    m.getDrugForm() + "','" +
-                    m.getUnit() + "','" +
-                    m.getSpec() + "','" +
-                    /*(m.getClassify() == null ? "" : CLASSIFY_MAP.get(m.getClassify())) +*/ "1','" +
-                    m.getPlaceOfProd() + "','" +
+            String sql = "INSERT INTO R_Company_Medicine (COMPANYID, MEDICINEID, COMEDICINEID, COMEDICINENAME, MICODE, MINAME, PRICE, MINPRICE, BARCODE, STATUS) VALUES ('" +
+                    "testCompany'," +
+                    "(select MEDICINEID from T_Medicine where MINAME='" + m.getMiName() + "' and MICODE='" + m.getMiCode() + "'),'" +
+                    m.getCoCode() + "','" +
                     m.getMiName() + "','" +
                     m.getMiCode() + "','" +
-                    (m.getMiCategory() == null ? "" : BKE001_MAP.get(m.getMiCategory())) + "','" +
-                    (m.getMiItemLevel() == null ? "" : AKA065_MAP.get(m.getMiItemLevel())) + "','" +
+                    m.getMiName() + "','" +
                     m.getPrice() + "','" +
-                    MD_STATUS_SELLING + "');";
+                    "0','" +
+                    m.getBarCode() + "','" +
+                    "1');";
             System.out.println(sql);
         }
         System.out.println(count);
     }
+
 
     /**
      * 获取ID（32位）
