@@ -10,7 +10,7 @@ public class TwoSum1 {
 
     public static void main(String args[]) {
         int[] temp = {8, -2, 1, 7, 5, 4};
-        int[] result = twoSum(temp,5);
+        int[] result = twoSum(temp, 5);
         System.out.println(result[0] + "," + result[1]);
     }
 
@@ -39,5 +39,19 @@ public class TwoSum1 {
 
         return res;
     }
+
+    //    public int[] twoSum(int[] nums, int target) {
+    //        int[] result = new int[2];
+    //        HashMap<Integer, Integer> map = new HashMap<>(nums.length);
+    //        for (int i = 0; i < nums.length; i++) {
+    //            if (map.get(nums[i]) != null) {
+    //                result[0] = map.get(nums[i]);
+    //                result[1] = i;
+    //                return result;
+    //            }
+    //            map.put(target - nums[i], i);
+    //        }
+    //        return result;
+    //    }
 
 }
