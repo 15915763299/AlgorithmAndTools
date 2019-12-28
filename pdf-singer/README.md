@@ -19,16 +19,16 @@ byte[] streamBytes = reader.getPageContent(1);
 String contentStream = new String(streamBytes);
 System.out.println(contentStream);
 ```
-结果类似这种：
+结果类似这种（中文是标注）：
 ```
-BT
-/CS0 cs 0.6 0.4 0  scn
-/C2_0 56.25 Tf
-700.312 1203.75 Td
-<0003000400050006000700080009000A000B0008000C>Tj
-ET
+BT 开始
+/CS0 cs 0.6 0.4 0  scn  
+/C2_0 56.25 Tf  字体以及大小
+700.312 1203.75 Td   位置
+<0003000400050006000700080009000A000B0008000C>Tj  内容
+ET  结束
 /TouchUp_TextEdit MP
-BT
+BT  开始
 /C2_0 22.5 Tf
 135 1067.907 Td
 <000D000C000E000F00100001>Tj
