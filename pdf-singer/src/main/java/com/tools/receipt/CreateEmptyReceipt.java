@@ -1,12 +1,8 @@
 package com.tools.receipt;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.TextField;
+import com.itextpdf.text.pdf.*;
 
 import java.io.FileOutputStream;
 
@@ -38,6 +34,7 @@ public class CreateEmptyReceipt {
         addTextField(writer);
 
         document.close();
+        writer.close();
         System.out.println(System.currentTimeMillis() - start);
     }
 
@@ -194,17 +191,19 @@ public class CreateEmptyReceipt {
         cb.rectangle(129.375f, 104.063f, 1755.625f, 877.5f);
         cb.stroke();
 
+        //横
         cb.setLineWidth(2.8f);
         cb.moveTo(129.375f, 928.125f);
         cb.lineTo(129.375f + 1755, 928.125f);
         cb.stroke();
-        cb.moveTo(129.375f, 503.437f);
-        cb.lineTo(129.375f + 1755, 503.437f);
+        cb.moveTo(129.375f, 503.437f - 2.8);
+        cb.lineTo(129.375f + 1755, 503.437f - 2.8);
         cb.stroke();
         cb.moveTo(129.375f, 441.562f);
         cb.lineTo(129.375f + 1755, 441.562f);
         cb.stroke();
 
+        //竖
         cb.moveTo(298.124f, 981.563f);
         cb.lineTo(298.124f, 981.563f - 480.937);
         cb.stroke();
@@ -242,9 +241,11 @@ public class CreateEmptyReceipt {
 
     private static void addTextFiled(PdfWriter writer, Rectangle rectangle, String fileName) throws Exception {
         TextField field = new TextField(writer, rectangle, fileName);
-        field.setAlignment(Element.ALIGN_TOP);
-        field.setOptions(TextField.MULTILINE);
-        writer.getAcroForm().addFormField(field.getTextField());
+        //多行+不可编辑
+        field.setOptions(TextField.MULTILINE | TextField.READ_ONLY);
+        field.getTextField().setFlags(PdfFormField.FF_NO_EXPORT);
+        writer.addAnnotation(field.getTextField());
+        //writer.getAcroForm().addFormField(field.getTextField());
     }
 
 }

@@ -71,8 +71,9 @@ public class AddReceiptInfo {
     private static void fillFrom(PdfStamper stamper, BaseFont bf) throws Exception {
         //填入表单信息
         AcroFields form = stamper.getAcroFields();
-        //form.addSubstitutionFont(bf);
+        form.addSubstitutionFont(bf);
         form.setExtraMargin(0, 5);
+
         setText(form, bf, "fill_1", "103050101001");
         setText(form, bf, "fill_2", "交通违法罚没收入");
         setText(form, bf, "fill_3", "元");
@@ -80,16 +81,20 @@ public class AddReceiptInfo {
         setText(form, bf, "fill_5", "");
         setText(form, bf, "fill_6", "10.00");
         setText(form, bf, "fill_7", "备注备注备注备注备注备注备注，备注备注备注备注备注备注，备注备注备注备注备注备注，备注备注备注备注");
+
+        //form.setGenerateAppearances(true);
     }
 
     /**
      * 给表单设置数据
      */
     private static void setText(AcroFields form, BaseFont bf, String fieldName, String text) throws Exception {
+        //居中，要在设置字体之前，否则没效果
         AcroFields.Item item = form.getFieldItem(fieldName);
         if (item != null) {
             item.getMerged(0).put(PdfName.Q, new PdfNumber(PdfFormField.Q_CENTER));
         }
+
         form.setFieldProperty(fieldName, "textsize", 22.5f, null);
         form.setFieldProperty(fieldName, "textfont", bf, null);
         form.setField(fieldName, text);

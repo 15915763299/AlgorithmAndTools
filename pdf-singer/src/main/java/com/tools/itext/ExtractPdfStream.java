@@ -14,9 +14,7 @@ import java.io.IOException;
  */
 public class ExtractPdfStream {
     private static final String PATH = System.getProperty("user.dir") + "/files/";
-    private static final String SRC_PDF = PATH + "template/template.pdf";
-    //private static final String SRC_PDF = PATH + "template/title.pdf";
-    //private static final String SRC_PDF = PATH + "template/text.pdf";
+    private static final String SRC_PDF = PATH + "receipt/template.pdf";
     private static final String DEST = PATH + "stream/stream%s";
 
     public static void main(String[] args) throws IOException {
