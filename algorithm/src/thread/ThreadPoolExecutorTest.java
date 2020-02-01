@@ -62,11 +62,6 @@ public class ThreadPoolExecutorTest {
 
         @Override
         public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-            doLog(r, e);
-        }
-
-        private void doLog(Runnable r, ThreadPoolExecutor e) {
-            // 可做日志记录等
             System.err.println(r.toString() + " rejected");
         }
     }
@@ -90,10 +85,6 @@ public class ThreadPoolExecutorTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-
-        public String getName() {
-            return name;
         }
 
         @Override
