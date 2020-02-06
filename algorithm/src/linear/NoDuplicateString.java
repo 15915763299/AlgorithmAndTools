@@ -1,5 +1,8 @@
 package linear;
 
+/**
+ * 找出不重复出现相同字符的最长字符串的长度（仅限ACSII字符）
+ */
 public class NoDuplicateString {
 
     public static void main(String args[]) {

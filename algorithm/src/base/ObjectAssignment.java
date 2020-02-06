@@ -1,4 +1,4 @@
-package others;
+package base;
 
 /**
  * 对象赋值
@@ -15,7 +15,7 @@ public class ObjectAssignment {
     public static void main(String[] args) {
         A a = null;
         assign(a);
-        System.out.println(a == null);
+        System.out.println(a == null);//true
     }
 
 }

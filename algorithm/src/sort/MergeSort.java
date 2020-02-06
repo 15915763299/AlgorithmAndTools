@@ -21,9 +21,9 @@ public class MergeSort {
 
         // Insertion sort on smallest arrays
         if (length < 3) {// 这里7是最佳值
-            for (int i = low; i < high; i++)
+            for (int i = low; i < high; i++)// 这里i不是小于等于high喔
                 for (int j = i; j > low && dest[j - 1] > dest[j]; j--)
-                    Sort.swap(dest, j, j - 1);
+                    Sort.swap(dest, j - 1, j);
 
             printSorted(src, dest, low);
             return;
@@ -31,16 +31,21 @@ public class MergeSort {
 
         // Recursively sort halves of dest into src
         int mid = (low + high) >>> 1;
-        mergeSort(dest, src, low, mid);   //src 与 dest 换位！！
+        mergeSort(dest, src, low, mid);   //src 与 dest 换位！！，这里把 src 的数字排好序
         mergeSort(dest, src, mid, high);
+
+        // 两段排好序后要把两段合并后复制
 
         // If list is already sorted, just copy from src to dest.  This is an
         // optimization that results in faster sorts for nearly ordered lists.
+        // 这个是直接两个顺序是排好序的，直接复制
         if (src[mid - 1] <= src[mid]) {
+            // src 复制到 dest 上
             System.arraycopy(src, low, dest, low, length);
             return;
         }
 
+        // 这个是一个个判断大小，合并复制
         // Merge sorted halves (now in src) into dest
         for (int i = low, p = low, q = mid; i < high; i++) {
             if (q >= high || p < mid && src[p] <= src[q])

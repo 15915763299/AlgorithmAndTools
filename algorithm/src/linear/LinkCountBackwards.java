@@ -3,7 +3,7 @@ package linear;
 /**
  * @author 尉涛
  * @date 2020-02-03 21:37
- * 求链表中倒数第N个节点
+ * 求链表中倒数第N个节点，解法：双指针
  **/
 public class LinkCountBackwards {
 

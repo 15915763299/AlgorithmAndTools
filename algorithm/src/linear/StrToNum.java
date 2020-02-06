@@ -1,4 +1,4 @@
-package others;
+package linear;
 
 /**
  * @author 尉涛
@@ -8,13 +8,15 @@ package others;
 public class StrToNum {
 
     public static void main(String[] args) {
-        System.out.println(strToNum("!@#$%^&*("));
-        System.out.println(strToNum(")_+~`="));
-        System.out.println(strToNum("-[]{}|;'"));
-        System.out.println(strToNum(":,.<>? "));
-        System.out.println(strToNum(" "));
-        System.out.println(strToNum("abc"));
-        System.out.println(strToNum(null));
+//        System.out.println(strToNum("!@#$%^&*("));
+//        System.out.println(strToNum(")_+~`="));
+//        System.out.println(strToNum("-[]{}|;'"));
+//        System.out.println(strToNum(":,.<>? "));
+//        System.out.println(strToNum(" "));
+//        System.out.println(strToNum("abc"));
+//        System.out.println(strToNum(null));
+        System.out.println(strToNum("ﾜ"));
+
     }
 
     private static long strToNum(String str) {

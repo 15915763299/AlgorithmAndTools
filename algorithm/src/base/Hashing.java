@@ -1,4 +1,4 @@
-package others;
+package base;
 
 /**
  * 如何查看哈希值（内存地址）
