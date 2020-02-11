@@ -4,7 +4,7 @@ package base;
  * 浮点数减法
  * 与2进制有关，这是2进制的无限小数
  */
-public class FloatSubtraction {
+public class TestFloat {
 
     public static void main(String args[]) {
         float a = 1.0f - 0.9f;

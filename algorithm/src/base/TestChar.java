@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
  * @date 2020-02-06 11:27
  * java char 2字节 2^16(65536)
  **/
-public class Char {
+public class TestChar {
 
     public static void main(String[] args) throws Exception {
         System.out.println((char) (-100000000) + " - " +

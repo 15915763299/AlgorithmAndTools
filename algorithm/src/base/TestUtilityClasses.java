@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Java 自带工具类
  */
-public class UtilityClassesAndMethods {
+public class TestUtilityClasses {
 
     public static void main(String[] args) {
         Integer[] integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};

@@ -8,7 +8,10 @@ package sort;
 public class SimpleSort {
 
     public static void main(String[] args) {
-        int[] array = {8, 11, -4, 9, 3, 1, 6, 10, 0};
+        int[] array = {8, 1, 5, 9, 3, 1, 6, 0};
+        print(array);
+        System.out.println();
+
         //bubbleSort(array);
         //selectionSort(array);
         insertionSort(array);
@@ -69,12 +72,42 @@ public class SimpleSort {
             int elementToSort = array[sorted + 1];
             while (elementToSort < array[j]) {
                 array[j + 1] = array[j];
+                print(array, sorted, elementToSort, j);
                 if (j-- == 0) {
                     break;
                 }
             }
             array[j + 1] = elementToSort;
+            print(array);
+            System.out.println("insertIndex: " + (j + 1));
+            System.out.println("--------------------------------");
         }
     }
 
+
+    // print------------------------------------------
+    private static void print(int[] array) {
+        for (int item : array) {
+            System.out.print(item + " ");
+        }
+    }
+
+
+    private static void print(int[] array, int sorted, int elementToSort, int j) {
+        for (int item : array) {
+            System.out.print(item + " ");
+        }
+        System.out.println("sorted: " + sorted + ", elementToSort: " + elementToSort);
+
+        printArrow(j);
+    }
+
+    private static void printArrow(int startPosition) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = startPosition * 2; i > 0; i--) {
+            stringBuilder.append(" ");
+        }
+        stringBuilder.append("j");
+        System.out.println(stringBuilder.toString());
+    }
 }
