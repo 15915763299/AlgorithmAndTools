@@ -15,6 +15,13 @@ public class MergeSort {
         mergeSort(aux, a, 0, a.length);
     }
 
+    /**
+     * 每次递归返回的 dest 都是有序的！！！
+     * @param src
+     * @param dest
+     * @param low
+     * @param high
+     */
     private static void mergeSort(int[] src, int[] dest, int low, int high) {
         int length = high - low;
         printUnsorted(src, dest, low, high);
@@ -33,6 +40,7 @@ public class MergeSort {
         int mid = (low + high) >>> 1;
         mergeSort(dest, src, low, mid);   //src 与 dest 换位！！，这里把 src 的数字排好序
         mergeSort(dest, src, mid, high);
+        System.out.println("---------------------------------------------------------");
 
         // 两段排好序后要把两段合并后复制
 
@@ -45,6 +53,8 @@ public class MergeSort {
             return;
         }
 
+        // ！！！为什么要用两个数组因为这一步用这种方法效率比交换高太多！！！
+        // ！！！为什么要交换位置，因为这一步后，排序结果数组变成了对方，虽然mergeSort出来的时候src是排序结果！！！
         // 这个是一个个判断大小，合并复制
         // Merge sorted halves (now in src) into dest
         for (int i = low, p = low, q = mid; i < high; i++) {
@@ -65,6 +75,7 @@ public class MergeSort {
     }
 
     private static void printUnsorted(int[] src, int[] dest, int low, int high) {
+        System.out.println("                 " + src.toString() + "         " + dest.toString());
         System.out.print("low:" + low + "   high:" + high + "   ");
         Sort.printArray(src);
         System.out.print("  ");

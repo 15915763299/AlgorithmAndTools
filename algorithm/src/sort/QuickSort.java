@@ -58,6 +58,7 @@ public class QuickSort {
 
             deScanSwapSort(items, start, j - 1);// 中心点左半部分递归
             deScanSwapSort(items, j + 1, end);// 中心点右半部分递归
+            // 中心点不用进入递归！！！
         }
     }
 
