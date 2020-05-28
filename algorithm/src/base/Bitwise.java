@@ -2,7 +2,7 @@ package base;
 
 /**
  * 位运算
- *
+ * <p>
  * <<      :     左移运算符，num << 1,相当于num乘以2
  * >>      :     右移运算符，num >> 1,相当于num除以2
  * >>>    :     无符号右移，忽略符号位，空位都以0补齐
@@ -13,6 +13,9 @@ public class Bitwise {
     private static final int CLOUMN_WIDTH = 35;
 
     public static void main(String[] args) {
+        test();
+        System.out.println();
+
         System.out.println("------------------------------十进制-------------------------------二进制-------------------------------操作");
 
         int num = -10;
@@ -41,6 +44,15 @@ public class Bitwise {
         //Java源码有一行是这样的： int mid = (high + low) >>> 1; 注意这里不会溢出
         int result = (Integer.MAX_VALUE * 2) >>> 1;
         System.out.println(Integer.toBinaryString(result) + "   " + result);
+
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    private static void test() {
+        int oldCapacity = 15;
+        int newCapacity = oldCapacity + (oldCapacity >> 1);
+
+        System.out.println(Integer.toBinaryString(newCapacity));
     }
 
     private static void printNum(int num, String operation) {

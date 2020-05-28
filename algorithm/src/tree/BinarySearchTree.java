@@ -193,6 +193,9 @@ public class BinarySearchTree {
         return root;
     }
 
+    /**
+     * 删除顶点
+     */
     private static Node deleteRoot(Node root) {
         Node newRoot = null;
         if (root.left != null && root.right != null) {
@@ -211,6 +214,9 @@ public class BinarySearchTree {
         return newRoot;
     }
 
+    /**
+     * 删除子节点
+     */
     private static void deleteChild(Node parent, Node target, int key, boolean isLeftChild) {
         if (parent == null || target == null) {
             System.out.println("not find key");
@@ -222,6 +228,7 @@ public class BinarySearchTree {
         } else if (target.data < key) {
             deleteChild(target, target.right, key, false);
         } else {
+            // 左右都有子节点、只有左子节点、只有右子节点、没有子节点
             if (target.left != null && target.right != null) {
                 Node successor = getSuccessor(target);
                 //接入
@@ -266,21 +273,24 @@ public class BinarySearchTree {
     private static Node getSuccessor(Node node) {
         Node successor;
         if (node.right.left != null) {
+            // 右子节点的左子节点不为空，取-> 右左左....
             node = node.right;
             while (node.left.left != null) {
                 node = node.left;
             }
             successor = node.left;
-            // 断开父节点的引用
+            // 记得断开父节点的引用
             node.left = null;
         } else {
+            // 右子节点的左子节点为空，取-> 右
             successor = node.right;
-            // 断开父节点的引用
+            // 记得断开父节点的引用
             node.right = null;
         }
 
         // successor是没有左节点的，如果有右节点，就给successor的父节点接上
         if (successor.right != null) {
+            // 右子给父左
             node.left = successor.right;
             // 断开右节点
             successor.right = null;
